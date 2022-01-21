@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AppBuscaTutor</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">Estudiante</string>
+    <string name="nav_header_estado">Online</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="menu_Perfil">Perfil</string>
+    <string name="menu_cerrar"></string>
+    <string name="menu_Favoritos">Mis Favoritos</string>
+    <string name="menu_Tutores">Mis Tutores</string>
+    <string name="menu_SerTutor">Ser un Tutor</string>
+    <string name="menu_BuscarTutor">Buscar Tutor</string>
+    <string name="menu_Historial">Historial de pagos</string>
+    <string name="menu_CerrarSesion">Cerrar Sesion</string>
+</resources>

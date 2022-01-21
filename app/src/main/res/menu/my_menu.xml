@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/MyPerfil"
+            android:icon="@drawable/ic_perfil"
+            android:title="@string/menu_Perfil"
+            android:background="@color/Color_principal"/>
+        <item
+            android:id="@+id/MisFavoritos"
+            android:icon="@drawable/ic_tutorfavorito"
+            android:title="@string/menu_Favoritos" />
+        <item
+            android:id="@+id/MisTutores"
+            android:icon="@drawable/ic_misautores"
+            android:title="@string/menu_Tutores" />
+        <item
+            android:id="@+id/SerTutor"
+            android:icon="@drawable/ic_sertutor"
+            android:title="@string/menu_SerTutor" />
+        <item
+            android:id="@+id/BuscarTutor"
+            android:icon="@drawable/ic_buscartutor"
+            android:title="@string/menu_BuscarTutor" />
+        <item
+            android:id="@+id/Historial"
+            android:icon="@drawable/ic_historialpagos"
+            android:title="@string/menu_Historial" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/menu_cerrar" >
+            <menu >
+                <item
+                    android:id="@+id/CerrarSesion"
+                    android:icon="@drawable/ic_cerrarsesion"
+                    android:title="@string/menu_CerrarSesion" />
+            </menu>
+        </item>
+    </group>
+</menu>

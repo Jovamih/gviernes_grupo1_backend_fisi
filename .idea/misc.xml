@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AppBuscaTutor/app/src/main/res/drawable-v24/ic_cerrarsesion.xml" value="0.1" />
+        <entry key="..\:/AppBuscaTutor/app/src/main/res/layout/menu.xml" value="0.1" />
+        <entry key="..\:/AppBuscaTutor/app/src/main/res/layout/my_toolbar.xml" value="0.1" />
+        <entry key="..\:/AppBuscaTutor/app/src/main/res/menu/my_menu.xml" value="0.1" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/border.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/border_foto.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/flecha_avanzar.xml" value="0.14907407407407408" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/item_homepage.xml" value="0.1" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/transparent_background.xml" value="0.1" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/user_icon.xml" value="0.1" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_buscar_tutor.xml" value="0.2" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_homepage_vista_tutores.xml" value="0.23703703703703705" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_item_tutor.xml" value="0.2" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_main.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_registrar_datos_tutor.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.22839506172839505" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_terminos_condiciones.xml" value="0.2" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.25" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/recycler_template.xml" value="0.25" />
+        <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_homepage_vista_tutores.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/recycler_template.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
