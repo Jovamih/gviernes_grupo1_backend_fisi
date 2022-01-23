@@ -34,14 +34,9 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage_vista_tutores);
         //obtener el Intent de la actividad actual recien creada
         Intent intent = getIntent();
-        try{
-            //Obtener el ID usuario  que la interfaz anterior envio
-            id_usuario=Integer.parseInt(intent.getStringExtra("id_usuario"));
-            ///createItemTutores(10);
-        }catch(Exception e){
-            id_usuario=1;
-        }
-
+        //Obtener el ID usuario  que la interfaz anterior envio
+        id_usuario=Integer.parseInt(intent.getStringExtra("id_usuario"));
+        ///createItemTutores(10);
 
         new TaskTutoresFavoritos(id_usuario).execute();
         System.out.println("TASK FINISHED");

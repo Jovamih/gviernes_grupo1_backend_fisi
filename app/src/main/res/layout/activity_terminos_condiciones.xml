@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".terminos_condiciones">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_titulo_terminos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70sp"
+                android:gravity="center_horizontal"
+                android:text="Términos y condiciones"
+                android:textColor="@color/Titulos"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:verticalScrollbarPosition="defaultPosition" />
+
+            <TextView
+                android:id="@+id/id_texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45sp"
+                android:layout_marginLeft="45sp"
+                android:layout_marginTop="40sp"
+                android:layout_marginEnd="45sp"
+                android:layout_marginRight="45sp"
+                android:ems="20"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal|left"
+                android:justificationMode="inter_word"
+                android:text="Con su permiso, nosotros y nuestros socios podemos utilizar datos de localización geográfica precisa e identificación mediante las características de dispositivos. Puede hacer clic para otorgarnos su consentimiento a nosotros y a nuestros socios para que llevemos a cabo el procesamiento previamente descrito. De forma alternativa, puede acceder a información más detallada y cambiar sus preferencias antes de otorgar o negar su consentimiento."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30sp"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="70sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginRight="30sp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/id_btncancel"
+                    android:layout_width="127dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_weight="1"
+                    android:text="Cancelar"
+                    android:textStyle="normal"
+                    app:backgroundTint="@color/Titulos"
+                    app:cornerRadius="20sp" />
+
+                <Button
+                    android:id="@+id/id_btnconf"
+                    android:layout_width="127dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_weight="1"
+                    android:text="Confirmar"
+                    android:textStyle="normal"
+                    app:backgroundTint="@color/Titulos"
+                    app:cornerRadius="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

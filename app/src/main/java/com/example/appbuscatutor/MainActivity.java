@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*Cambiar de activities sin usar botones */
     public void registrar_usuario(View view) {
-        startActivity(new Intent(getApplicationContext(),homepage.class));
+        startActivity(new Intent(getApplicationContext(),registrar_usuario.class));
         finish();
     }
 }

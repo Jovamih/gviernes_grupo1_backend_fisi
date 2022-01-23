@@ -78,10 +78,9 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:onClick="registrar_usuario"
             android:text="Ingresar"
-            android:textSize="18dp"
             android:textStyle="bold"
+            android:textSize="18dp"
             app:backgroundTint="#FA5075"
             app:cornerRadius="30sp" />
 

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".registrar_datos_tutor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="35sp"
+            android:layout_marginRight="35sp"
+            android:text="Ingrese sus datos"
+            android:textColor="@color/Titulos"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/multiAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginRight="30sp"
+            android:fontFamily="sans-serif-light"
+            android:justificationMode="inter_word"
+            android:text="Puede acceder y editar toda la información de su cuenta aquí, pero su correo seguirá sin editar."
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_especialidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35sp"
+                android:layout_marginLeft="35sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="35sp"
+                android:layout_marginRight="35sp"
+                android:fontFamily="sans-serif-light"
+                android:text="Especialidad"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/input_especialidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35sp"
+                android:layout_marginRight="35sp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="Ingrese su(s) especialidad(es)"
+                android:inputType="textPersonName"
+                android:textColor="@color/Datos"
+                android:textColorHint="#AC9494"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/text_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35sp"
+                android:layout_marginLeft="35sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="35sp"
+                android:layout_marginRight="35sp"
+                android:fontFamily="sans-serif-light"
+                android:text="Descripción como tutor"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/input_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35sp"
+                android:layout_marginRight="35sp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="Ingrese su descripción como tutor"
+                android:inputType="textMultiLine"
+                android:textColor="@color/Datos"
+                android:textColorHint="@color/Datos"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/text_habilidades"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35sp"
+                android:layout_marginLeft="35sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="35sp"
+                android:layout_marginRight="35sp"
+                android:fontFamily="sans-serif-light"
+                android:text="Habilidades"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/input_habilidades"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35sp"
+                android:layout_marginRight="35sp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="Ingrese sus habilidades"
+                android:inputType="textPersonName"
+                android:textColor="@color/Datos"
+                android:textColorHint="#AC9494"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_foto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="35sp"
+                    android:layout_marginLeft="35sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginRight="20sp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Subir foto"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/id_btnSubirImagen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Seleccionar imagen"
+                    android:onClick="btnSeleccionarImagen"
+                    android:textColor="@color/Datos"
+                    app:backgroundTint="@color/BtnImagen" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70sp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/id_btncontinuar"
+                    android:layout_width="130sp"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Continuar"
+                    app:backgroundTint="@color/Titulos"
+                    app:cornerRadius="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

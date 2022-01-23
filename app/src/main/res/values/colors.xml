@@ -15,4 +15,5 @@
     <color name="BtnImagen">#D8E3EA</color>
     <color name="background_principal">#2A0D2E</color>
     <color name="navegador">#80002a</color>
+    <color name="background">#2A0D2E</color>
 </resources>

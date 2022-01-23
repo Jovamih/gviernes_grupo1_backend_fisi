@@ -18,4 +18,13 @@
     <string name="menu_BuscarTutor">Buscar Tutor</string>
     <string name="menu_Historial">Historial de pagos</string>
     <string name="menu_CerrarSesion">Cerrar Sesion</string>
+
+    <!--Paypal-->
+    <string name="redireccion_paypal_tittle">Para el pago acceda a paypal</string>
+    <string name="redireccion_paypal_content">El pago por suscripción es de $5.99 al mes.</string>
+    <string name="redireccion_paypal_boton">Ir a PayPal</string>
+    <string name="verificado_paypal">Verificación exitosa</string>
+    <string name="verificado_paypal_message">Ya eres parte de la comunidad BuscaTuTutor</string>
+    <string name="verificado_paypal_btn">Finalizar</string>
+
 </resources>

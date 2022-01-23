@@ -13,8 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBuscaTutor">
         <activity
-            android:name=".ver_datos_tutor"
+            android:name=".verificacion_paypal"
             android:exported="false" />
+        <activity
+            android:name=".paypal"
+            android:exported="false" />
+        <activity
+            android:name=".registrar_usuario"
+            android:exported="false" />
+        <activity
+            android:name=".buscar_tutor"
+            android:exported="false" />
+        <activity android:name=".terminos_condiciones" />
+        <activity android:name=".ver_datos_tutor" />
+        <activity android:name=".registrar_datos_tutor" />
         <activity android:name=".homepage" />
         <activity android:name=".MainActivity">
             <intent-filter>
