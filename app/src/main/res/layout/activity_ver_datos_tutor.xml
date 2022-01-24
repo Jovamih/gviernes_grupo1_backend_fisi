@@ -87,18 +87,34 @@
                 android:textColor="@color/blanco" />
 
             <TextView
-                android:id="@+id/textView_especialidad"
+                android:id="@+id/textView_especialidad1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Especialidad"
                 android:textColor="#FA5075"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView_especialidad2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="- - - -"
+                android:textColor="#FA5075"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView_especialidad3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="- - - -"
+                android:textColor="#FA5075"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="10sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -175,11 +191,27 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView_habilidades"
+                android:id="@+id/textView_habilidades1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:text="Habilidades"
+                android:textColor="#FFFF"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/textView_habilidades2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text=""
+                android:textColor="#FFFF"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/textView_habilidades3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text=""
                 android:textColor="#FFFF"
                 android:textStyle="italic" />
         </LinearLayout>
