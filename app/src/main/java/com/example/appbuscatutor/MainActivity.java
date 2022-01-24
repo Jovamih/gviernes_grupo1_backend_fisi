@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("CLICK REALIZADO");
-                Intent intent= new Intent(getBaseContext(),homepage_tutorfavorito.class);
+                Intent intent= new Intent(getBaseContext(),homepage_tutores.class);
                 startActivity(intent);
             }
         });
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     public void homepage(View view){
-        Intent intent= new Intent(MainActivity.this,homepage.class);
+        Intent intent= new Intent(MainActivity.this,homepage_tutores.class);
         startActivity(intent);
     }
 }

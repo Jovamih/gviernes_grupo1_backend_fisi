@@ -40,4 +40,8 @@ public class TutoresFavoritos {
         this.foto=foto;
         this.id = id;
     }
+    @Override
+    public String toString(){
+        return String.format("Nombre=%s | Descripcion= %s",this.nombre,this.descripcion);
+    }
 }

@@ -172,7 +172,7 @@ class RegistrarUsuariosDatabase extends AsyncTask<Void,Void,Void> {
                 break;
             case REGISTRO_EXITOSO:
                 //envio el ID a la actividad de HomePage tutores favoritos
-                Intent intent=new Intent(registrar_usuario.this,homepage.class);
+                Intent intent=new Intent(registrar_usuario.this,homepage_tutores.class);
                 intent.putExtra("id_usuario",String.valueOf(this.id));
                 //antes de pasarnos a la actividad HOME, cerramos el dialog
 
