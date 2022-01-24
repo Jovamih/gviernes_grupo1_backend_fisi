@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBuscaTutor">
         <activity
+            android:name=".homepage_tutorfavorito"
+            android:exported="false" />
+        <activity
             android:name=".verificacion_paypal"
             android:exported="false" />
         <activity
