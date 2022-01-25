@@ -104,7 +104,7 @@ public class ver_datos_tutor extends AppCompatActivity {
     //*************************************************
     private void MetodoGet(){
 
-        String endpoint="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?id=1";
+        String endpoint="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?id="+id_tutor;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, endpoint, null, new Response.Listener<JSONObject>() {
             @Override
