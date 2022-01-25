@@ -6,7 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.widget.Toast;
+
+
+import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +34,7 @@ public class homepage_tutores extends AppCompatActivity {
     private int id_estudiante=0;
     private String ENDPOINT_FAVORITOS="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores-favoritos?id=%d";
     private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=10";
+    private String ENDPOINT_ESTUDIANTE="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/estudiantes?id=%d";
     //lista de tutores favoritos y/o totales
     List<TutoresFavoritos> lista_tutores= new ArrayList<>();
     @Override
@@ -41,6 +49,7 @@ public class homepage_tutores extends AppCompatActivity {
         }
         requestQueue= Volley.newRequestQueue(getApplicationContext());
 
+        get_perfil_estudiante();
 
         get_tutores_favoritos_response(new VolleyCallback() {
             @Override
@@ -92,6 +101,39 @@ public class homepage_tutores extends AppCompatActivity {
         Intent intent= new Intent(homepage_tutores.this,ver_datos_tutor.class);
         intent.putExtra("id_tutor",String.valueOf(item.getId()));
         startActivity(intent);
+    }
+    public void get_perfil_estudiante(){
+        ENDPOINT_ESTUDIANTE=String.format(ENDPOINT_ESTUDIANTE,id_estudiante);
+        JsonObjectRequest estudiante_request= new JsonObjectRequest(Request.Method.GET, ENDPOINT_ESTUDIANTE, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean success= response.getBoolean("success");
+                    if(success){ //si el perfil del estudiante existe
+                        JSONObject data= response.getJSONObject("data");
+                        System.out.println("OBTENIENDO LOS DATOS DEL PERFIL DE USUARIO");
+                        TextView textNombre=findViewById(R.id.id_nombre_usuario);
+                        ImageView image=findViewById(R.id.id_foto_usuario);
+
+                        textNombre.setText(data.getString("nombre_completo"));
+                        Picasso.get()
+                                .load("https://tinyurl.com/mwaps96p")
+                                .error(R.mipmap.ic_launcher_round)
+                                .into(image);
+                        System.out.println("Perfil de usuario cargado");
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Error de conexion a la API");
+            }
+        });
+        requestQueue.add(estudiante_request);
     }
 
     public void get_tutores_favoritos_response(final VolleyCallback callback){
