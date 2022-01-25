@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,7 +37,7 @@ public class homepage_tutores extends AppCompatActivity {
             Intent intent= getIntent();
             id_estudiante=Integer.parseInt(intent.getStringExtra("id_estudiante"));
         }catch (Exception e){
-            id_estudiante=1;
+            id_estudiante=1052;
         }
         requestQueue= Volley.newRequestQueue(getApplicationContext());
 
@@ -51,13 +52,19 @@ public class homepage_tutores extends AppCompatActivity {
                     //lista_tutores.clear();
 
                 }else{
-
+                    Toast.makeText(getApplicationContext(),"Recomendando tutores",Toast.LENGTH_SHORT).show();
                     System.out.println("NO Tiene tutores favoritos, procedemos a recomendar disponibles");
                     get_tutores_disponibles_response(new VolleyCallback() {
                         @Override
                         public void onSuccess() {
-                            build_items_tutores(lista_tutores);
-                            lista_tutores.clear();
+                            System.out.println("Tutores actuales="+lista_tutores.size());
+                            if(lista_tutores.size()>0){
+                                build_items_tutores(lista_tutores);
+                                //lista_tutores.clear();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"No hay tutores cerca de ti.",Toast.LENGTH_LONG).show();
+                            }
+
                         }
                     });
                 }
@@ -163,5 +170,5 @@ public class homepage_tutores extends AppCompatActivity {
 
 }
 interface VolleyCallback {
-    void onSuccess();
+    void onSuccess() throws JSONException;
 }
