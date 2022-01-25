@@ -17,7 +17,8 @@ android:orientation="vertical"
     android:layout_marginBottom="10dp"
     android:background="@drawable/item_homepage"
     android:orientation="vertical"
-    android:padding="3dp">
+    android:gravity="center_horizontal"
+    android:padding="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
