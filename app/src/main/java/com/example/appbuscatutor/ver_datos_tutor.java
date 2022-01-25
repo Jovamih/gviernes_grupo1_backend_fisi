@@ -49,7 +49,6 @@ public class ver_datos_tutor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("i");
         setContentView(R.layout.activity_ver_datos_tutor);
         //obtener el ID de la intefaz anterior
         Intent intent=getIntent();
