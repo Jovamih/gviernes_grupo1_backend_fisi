@@ -65,8 +65,10 @@
     </LinearLayout>
 
     <ScrollView
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
 
         >
 
@@ -75,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
+
             android:orientation="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>

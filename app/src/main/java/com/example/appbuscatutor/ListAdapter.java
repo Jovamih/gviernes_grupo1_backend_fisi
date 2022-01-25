@@ -30,7 +30,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.lista_tutores=lista_tutores;
         this.context=context;
         this.mInflater= LayoutInflater.from(context);
-        this.mInflater= LayoutInflater.from(context);
         this.listener=listener;
     }
 

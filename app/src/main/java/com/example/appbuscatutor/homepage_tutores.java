@@ -26,7 +26,8 @@ public class homepage_tutores extends AppCompatActivity {
     private int id_estudiante=0;
     private String ENDPOINT_FAVORITOS="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores-favoritos?id=%d";
     private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=10";
-
+    //lista de tutores favoritos y/o totales
+    List<TutoresFavoritos> lista_tutores= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,17 +38,33 @@ public class homepage_tutores extends AppCompatActivity {
         }catch (Exception e){
             id_estudiante=1;
         }
-        requestQueue= Volley.newRequestQueue(this);
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
 
-        List<TutoresFavoritos> favoritos=get_tutores_favoritos_response(id_estudiante);
-        if(favoritos.size()>0){
-            System.out.println("FAVORITOS ENCONTRADOS PARA id="+id_estudiante);
-            build_items_tutores(favoritos);
-        }else{
-            System.out.println("TUTORES DISPONIBLES ");
-            favoritos=get_tutores_disponibles_response();
-            build_items_tutores(favoritos);
-        }
+
+        get_tutores_favoritos_response(new VolleyCallback() {
+            @Override
+            public void onSuccess() {
+                if(lista_tutores.size()>0){
+                    System.out.println("Tutores favoritos disponibles");
+                    System.out.println("AGREGANDO AL ACTIVITY");
+                    build_items_tutores(lista_tutores);
+                    //lista_tutores.clear();
+
+                }else{
+
+                    System.out.println("NO Tiene tutores favoritos, procedemos a recomendar disponibles");
+                    get_tutores_disponibles_response(new VolleyCallback() {
+                        @Override
+                        public void onSuccess() {
+                            build_items_tutores(lista_tutores);
+                            lista_tutores.clear();
+                        }
+                    });
+                }
+            }
+        });
+
+
 
     }
 
@@ -70,8 +87,8 @@ public class homepage_tutores extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<TutoresFavoritos> get_tutores_favoritos_response(int id_estudiante){
-        List<TutoresFavoritos> lista_tutores= new ArrayList<>();
+    public void get_tutores_favoritos_response(final VolleyCallback callback){
+
         ENDPOINT_FAVORITOS=String.format(ENDPOINT_FAVORITOS,id_estudiante);
         System.out.println("Accediendo al endpoint: "+ENDPOINT_FAVORITOS);
         JsonObjectRequest tutores_response= new JsonObjectRequest(Request.Method.GET, ENDPOINT_FAVORITOS, null, new Response.Listener<JSONObject>() {
@@ -90,6 +107,7 @@ public class homepage_tutores extends AppCompatActivity {
                         lista_tutores.add(tutor );
                         System.out.println(tutor);
                     }
+                    callback.onSuccess();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -106,12 +124,10 @@ public class homepage_tutores extends AppCompatActivity {
 
         requestQueue.add(tutores_response);
 
-        return lista_tutores;
     }
-    public List<TutoresFavoritos> get_tutores_disponibles_response(){
-        List<TutoresFavoritos> lista_tutores= new ArrayList<>();
+    public void get_tutores_disponibles_response(final VolleyCallback callback){
         System.out.println("Accediendo al endpoint: "+ENDPOINT_DISPONIBLES);
-        JsonObjectRequest tutores_response= new JsonObjectRequest(Request.Method.GET, ENDPOINT_DISPONIBLES, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest tutores_disp_response= new JsonObjectRequest(Request.Method.GET, ENDPOINT_DISPONIBLES, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -126,6 +142,7 @@ public class homepage_tutores extends AppCompatActivity {
                         lista_tutores.add(tutor );
                         System.out.println(tutor);
                     }
+                    callback.onSuccess();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -140,9 +157,11 @@ public class homepage_tutores extends AppCompatActivity {
                     }
                 });
 
-        requestQueue.add(tutores_response);
+        requestQueue.add(tutores_disp_response);
 
-        return lista_tutores;
     }
 
+}
+interface VolleyCallback {
+    void onSuccess();
 }
