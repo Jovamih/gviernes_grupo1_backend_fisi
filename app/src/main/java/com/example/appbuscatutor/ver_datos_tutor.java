@@ -124,15 +124,15 @@ public class ver_datos_tutor extends AppCompatActivity {
                         lista_especialidades.add(mJsonObject.getJSONArray("especialidades").getString(i));
                     }
                     System.out.println(lista_especialidades);*/
-                    especialidad1.setText(mJsonObject.getJSONArray("especialidades").getString(0));
-                    especialidad2.setText(mJsonObject.getJSONArray("especialidades").getString(1));
-                    habilidades1.setText(mJsonObject.getJSONArray("habilidades").getString(0));
-                    habilidades2.setText(mJsonObject.getJSONArray("habilidades").getString(1));
-
                     Picasso.get()
                             .load(foto_text)
                             .error(R.mipmap.ic_launcher_round)
                             .into(foto);
+
+                    especialidad1.setText(mJsonObject.getJSONArray("especialidades").getString(0));
+                    habilidades1.setText(mJsonObject.getJSONArray("habilidades").getString(0));
+                    especialidad2.setText(mJsonObject.getJSONArray("especialidades").getString(1));
+                    habilidades2.setText(mJsonObject.getJSONArray("habilidades").getString(1));
                     habilidades3.setText(mJsonObject.getJSONArray("habilidades").getString(2));
                     especialidad3.setText(mJsonObject.getJSONArray("especialidades").getString(2));
 
