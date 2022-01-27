@@ -92,12 +92,14 @@
     android:orientation="horizontal"
     android:layout_gravity="bottom"
     android:background="@color/Color_principal"
+    android:weightSum="3"
     >
 
         <LinearLayout
-            android:layout_width="137dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="1"
             >
 
             <!--<ImageView
@@ -114,6 +116,7 @@
                 android:src="@drawable/settings_icon"
                 android:clickable="true"
                 android:focusable="true"
+
                 >
 
             </ImageView>
@@ -121,18 +124,20 @@
         </LinearLayout>
 
        <LinearLayout
-           android:layout_width="149dp"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_gravity="center"
+
+           android:layout_weight="1"
            >
+
            <ImageView
                android:id="@+id/btn_buscar"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:src="@drawable/search_icon"
                android:clickable="true"
                android:focusable="true"
-               />
+               android:src="@drawable/search_icon" />
 
        </LinearLayout>
 
@@ -140,6 +145,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:layout_weight="1"
           >
           <ImageView
               android:id="@+id/btn_usuario"
@@ -148,6 +154,7 @@
               android:src="@drawable/user_icon"
               android:clickable="true"
               android:focusable="true"
+
               />
 
       </LinearLayout>
