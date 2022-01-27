@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.paypal.checkout.PayPalCheckout;
 import com.paypal.checkout.approve.Approval;
@@ -28,18 +29,34 @@ import com.paypal.checkout.order.Order;
 import com.paypal.checkout.order.PurchaseUnit;
 import com.paypal.checkout.paymentbutton.PayPalButton;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class paypal extends AppCompatActivity {
 
     PayPalButton payPalButton;
 
-    public static final String YOUR_CLIENT_ID = "AZ06mXPsRBGz4Ti-_EfaUgqvbo-t4r5MYP0we5R6_FheuYk2ZecSrUfufueXC8QdmwVIt-7Pht8s161E";
+
+
+    public static final String YOUR_CLIENT_ID = "AaE0sFL_clUJomQ0mZZUG35rBqw-MqzxP-0gPnZSqjDq_If3IpEVbKrvR4DP5qjlTYiNTBXF31XD6d4T";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        String descripcion = getIntent().getExtras().getString("descripcion");
+        String habilidades = getIntent().getExtras().getString("habilidades");
+        String especialidades = getIntent().getExtras().getString("especialidades");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paypal);
 
@@ -49,7 +66,7 @@ public class paypal extends AppCompatActivity {
                 getApplication(),
                 YOUR_CLIENT_ID,
                 Environment.SANDBOX,
-                String.format("%s://paypalpay","com.example.demopaypal"),
+                String.format("%s://paypalpay","com.example.appbuscatutor"),
                 CurrencyCode.USD,
                 UserAction.PAY_NOW,
                 new SettingsConfig(
@@ -59,7 +76,6 @@ public class paypal extends AppCompatActivity {
         );
         PayPalCheckout.setConfig(config);
 
-        System.out.println("Punto de control 2");
         payPalButton.setup(
                 new CreateOrder() {
 
@@ -93,7 +109,10 @@ public class paypal extends AppCompatActivity {
                             @Override
                             public void onCaptureComplete(@NotNull CaptureOrderResult result) {
                                 Log.i("CaptureOrder", String.format("CaptureOrderResult: %s", result));
-                                System.out.println("GAAA");
+                                /*ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante=101&descripcion=" +
+                                        descripcion +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
+                                        habilidades + "&especialidades=" +
+                                        especialidades);*/
                                 Intent intent = new Intent(paypal.this, verificacion_paypal.class);
                                 startActivity(intent);
                             }
@@ -104,7 +123,7 @@ public class paypal extends AppCompatActivity {
                     @Override
                     public void onCancel() {
                         Log.d("OnCancel", "Buyer cancelled the PayPal experience.");
-                        System.out.println("GAAABS");
+                        System.out.println("Cancelado");
                     }
                 },
                 new OnError() {
@@ -116,5 +135,27 @@ public class paypal extends AppCompatActivity {
                 }
         );
 
+    }
+
+    private void ejecutarServicio (String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "OPERACION EXITOSA", Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return null;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

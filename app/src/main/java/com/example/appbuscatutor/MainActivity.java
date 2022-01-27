@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("CLICK REALIZADO");
-                Intent intent= new Intent(getBaseContext(),buscar_tutor.class);
+                Intent intent= new Intent(getBaseContext(),registrar_datos_tutor.class);
                 startActivity(intent);
             }
         });

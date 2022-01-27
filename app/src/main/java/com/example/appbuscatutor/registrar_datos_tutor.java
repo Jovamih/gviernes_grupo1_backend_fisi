@@ -1,6 +1,5 @@
 package com.example.appbuscatutor;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,20 +9,10 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class registrar_datos_tutor extends AppCompatActivity {
 
@@ -48,41 +37,16 @@ public class registrar_datos_tutor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor");
-                ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante=96&descripcion=" +
-                        edtDescripcion.getText().toString() +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
-                        edtHabilidades.getText().toString() + "&especialidades=" +
-                        edtEspecialidad.getText().toString());
+                String desc =new String(edtDescripcion.getText().toString());
+                String hab =new String(edtHabilidades.getText().toString());
+                String esp =new String(edtEspecialidad.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), paypal.class);
+                intent.putExtra("descripcion", desc);
+                intent.putExtra("habilidades", hab);
+                intent.putExtra("especialidades", esp);
+                startActivity(intent);
             }
         });
-
-    }
-
-    private void ejecutarServicio (String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "OPERACION EXITOSA", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map <String, String> parametros = new HashMap<String, String>();
-                parametros.put("id_estudiante", "49");
-                parametros.put("descripcion", edtDescripcion.getText().toString());
-                parametros.put("foto", edtFoto.getText().toString());
-                parametros.put("habilidades", edtHabilidades.getText().toString());
-                parametros.put("especialidades", edtEspecialidad.getText().toString());
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 
     /*boton para cargar la imagen*/
