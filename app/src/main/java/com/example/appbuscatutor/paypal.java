@@ -109,10 +109,10 @@ public class paypal extends AppCompatActivity {
                             @Override
                             public void onCaptureComplete(@NotNull CaptureOrderResult result) {
                                 Log.i("CaptureOrder", String.format("CaptureOrderResult: %s", result));
-                                /*ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante=101&descripcion=" +
+                                ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante=105&descripcion=" +
                                         descripcion +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
                                         habilidades + "&especialidades=" +
-                                        especialidades);*/
+                                        especialidades);
                                 Intent intent = new Intent(paypal.this, verificacion_paypal.class);
                                 startActivity(intent);
                             }

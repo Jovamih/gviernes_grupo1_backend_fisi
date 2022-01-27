@@ -68,7 +68,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/id_btnA"
+                    android:id="@+id/id_btn_finalizar_paypal"
                     android:layout_width="match_parent"
                     android:layout_height="80sp"
                     android:layout_marginStart="80sp"
