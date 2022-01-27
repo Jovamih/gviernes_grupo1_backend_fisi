@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 
+
+import android.view.View;
+import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,6 +83,15 @@ public class homepage_tutores extends AppCompatActivity {
                 }
             }
         });
+
+        //Agregamos los eventos de click lateral
+        OnClickMenuBarraLateral();
+        //Agregamos la menu
+        OnClickMenuHomepage();
+        //meni de buscar tutor
+        OnClickMenuBuscarTutor();
+        //menu de mostrar perfil
+        OnClickMenuPerfil();
 
 
 
@@ -209,8 +222,54 @@ public class homepage_tutores extends AppCompatActivity {
         requestQueue.add(tutores_disp_response);
 
     }
+    public void OnClickMenuHomepage(){
+        ImageView imgview =  findViewById(R.id.btn_home);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void OnClickMenuBuscarTutor(){
+        ImageView imgview =  findViewById(R.id.btn_buscar);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,buscar_tutor.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void OnClickMenuPerfil(){
+        ImageView imgview =  findViewById(R.id.btn_usuario);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void OnClickMenuBarraLateral(){
+        Button buttonLateral =  findViewById(R.id.btn_lateral);
+
+        buttonLateral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 }
 interface VolleyCallback {
     void onSuccess() throws JSONException;
 }
+
+
