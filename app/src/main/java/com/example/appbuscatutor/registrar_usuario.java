@@ -13,6 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URL;
 import java.nio.channels.AsynchronousChannelGroup;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,47 +33,78 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class registrar_usuario extends AppCompatActivity {
 
+    private String ENDPOINT_REGISTRAR_USUARIO="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-estudiante";
+    private String correo,password,nombre_completo,num_telefono;
+    private RequestQueue requestQueue;
+    private JSONObject responseUsuario;
+    private int id_estudiante=0;
     Toast toast=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_usuario);
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
 
         Button button= (Button)findViewById(R.id.id_btn_registrar);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String nombre=((EditText)findViewById(R.id.id_text_nombres)).getText().toString().trim();
-                String telefono=((EditText)findViewById(R.id.id_text_numero)).getText().toString().trim();
-                String correo= ((EditText)findViewById(R.id.id_text_email)).getText().toString().trim();
-                String password= ((EditText)findViewById(R.id.id_text_password)).getText().toString().trim();
+                nombre_completo=((EditText)findViewById(R.id.id_text_nombres)).getText().toString().trim();
+                num_telefono=((EditText)findViewById(R.id.id_text_numero)).getText().toString().trim();
+                correo= ((EditText)findViewById(R.id.id_text_email)).getText().toString().trim();
+                password= ((EditText)findViewById(R.id.id_text_password)).getText().toString().trim();
                 String password_verify=((EditText)findViewById(R.id.id_text_password_verify)).getText().toString().trim();
                 System.out.println("DATOS");
-                System.out.println("NOMBRE="+nombre);
-                System.out.println("TELEFONO="+telefono);
+                System.out.println("NOMBRE="+nombre_completo);
+                System.out.println("TELEFONO="+num_telefono);
                 System.out.println("CORREO="+correo);
                 System.out.println("password="+password);
                 System.out.println("Password verify="+password_verify);
 
 
                 //primera verificacion de password coincidentes
-                if(password.equals(password_verify)){//si  coincide iniciamos el proceso de insercion
-                    toast=Toast.makeText(getBaseContext(),"",Toast.LENGTH_SHORT);//
-                    System.out.println("Las contraseñas con iguales");
-                    RegistrarUsuariosDatabase rb=new RegistrarUsuariosDatabase(correo,password,nombre,telefono);
-                    rb.execute();
-                    //rb.cancel(true);
+                if(password.equals(password_verify)) {//si  coincide iniciamos el proceso de insercion
+                    toast = Toast.makeText(getBaseContext(), "", Toast.LENGTH_SHORT);//
+                    System.out.println("Las contraseñas son iguales");
+                    //mostramos la pagina de carga
+                    ProgressDialog dialog=ProgressDialog.show(registrar_usuario.this,"","Registrando",true);
+                    RegistrarUsuarioResponse(new VolleyCallback() {
+                        @Override
+                        public void onSuccess() throws JSONException {
+                            dialog.dismiss();
+                            switch (responseUsuario.getInt("status")){
+                                case 1:
+                                    Toast.makeText(getApplicationContext(), "Usuario registrado existosamente!", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(registrar_usuario.this,homepage_tutores.class);
+                                    intent.putExtra("id_estudiante",String.valueOf(id_estudiante));
+                                    //antes de pasarnos a la actividad HOME, cerramos el dialog
 
-                }else{//en caso contrario procedemos con la insercion en la base de datos
+                                    startActivity(intent);
+                                    break;
+                                case 3:
+                                    Toast.makeText(getApplicationContext(), "El correo ya esta en uso.", Toast.LENGTH_SHORT).show();
+                                    break;
+                                default:
+                                    Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                            }
+                        }
+                    });
+                    //retiramos el dialog
+                    //dialog.dismiss();
+                } else{//en caso contrario procedemos con la insercion en la base de datos
                     // click handling code
                     System.out.println("Las contraseñas no  conciden");
                     //Looper.prepare();
-                   toast=Toast.makeText(getBaseContext(),"Las contraseñas no coinciden",Toast.LENGTH_SHORT);
-                   toast.show();
+                    toast=Toast.makeText(getBaseContext(),"Las contraseñas no coinciden",Toast.LENGTH_SHORT);
+                    toast.show();
 
                 }
 
@@ -69,6 +113,71 @@ public class registrar_usuario extends AppCompatActivity {
         });
     }
 
+    public void RegistrarUsuarioResponse(final VolleyCallback callback ){
+        System.out.println("Accediendo al ENDPOINT: "+ENDPOINT_REGISTRAR_USUARIO);
+        //configuraciones  de parametros
+        Map<String,String> params= new HashMap<>();
+        params.put("correo",this.correo);
+        params.put("password",this.password);
+        params.put("nombre_completo",this.nombre_completo);
+        params.put("num_telefono",this.num_telefono);
+        params.put("es_tutor","0");
+
+
+        JSONObject parameters=new JSONObject(params);
+        //Iniciamos la pantalla de carga
+
+        String URL_PORT=String.format("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-estudiante?correo=%s&password=%s&nombre_completo=%s&num_telefono=%s&es_tutor=%d",this.correo,this.password,this.nombre_completo,this.num_telefono,0);
+
+        //JSON Request
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
+                URL_PORT,
+                null,
+                new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("KEY RESPONSE="+response.keys());
+                try {
+                    int status=response.getInt("status");
+                    String message=response.getString("message");
+                    //int id_estudiante =response.getInt("id_estudiante")
+                    if(status==1){
+                        id_estudiante=response.getInt("id_estudiante");
+                    }
+                    responseUsuario= response;
+                    callback.onSuccess();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Error encontrado: response==|"+error);
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String , String> headers= new HashMap<>();
+                headers.put("Content-Type","Application/json");
+                return headers;
+            }
+        };
+        System.out.println("REQUEST= "+jsonRequest.getUrl());
+        System.out.println("BODY="+jsonRequest.getBody());
+        System.out.println("PARAMS="+jsonRequest.toString());
+        System.out.println("URL MODIFED="+URL_PORT);
+        requestQueue.add(jsonRequest);
+
+
+    }
+}
+
+/*
 class RegistrarUsuariosDatabase extends AsyncTask<Void,Void,Void> {
     private String stringConnection = "jdbc:mysql://buscatutordatabase.cuxsffuy95k9.us-east-1.rds.amazonaws.com:3306/buscatutor?UseUnicode=true&characterEncoding=utf8";
     private String user = "admin";
@@ -172,7 +281,7 @@ class RegistrarUsuariosDatabase extends AsyncTask<Void,Void,Void> {
                 break;
             case REGISTRO_EXITOSO:
                 //envio el ID a la actividad de HomePage tutores favoritos
-                Intent intent=new Intent(registrar_usuario.this,homepage.class);
+                Intent intent=new Intent(registrar_usuario.this,homepage_tutores.class);
                 intent.putExtra("id_usuario",String.valueOf(this.id));
                 //antes de pasarnos a la actividad HOME, cerramos el dialog
 
@@ -210,4 +319,6 @@ class RegistrarUsuariosDatabase extends AsyncTask<Void,Void,Void> {
             currentMessage = message;
         }
     }
-}
+
+*/
+

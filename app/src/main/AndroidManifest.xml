@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +27,7 @@
         <activity android:name=".terminos_condiciones" />
         <activity android:name=".ver_datos_tutor" />
         <activity android:name=".registrar_datos_tutor" />
-        <activity android:name=".homepage" />
+        <activity android:name=".homepage_tutores" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

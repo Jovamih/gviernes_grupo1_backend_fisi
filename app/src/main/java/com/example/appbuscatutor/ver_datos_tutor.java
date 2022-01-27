@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Connection;
@@ -20,16 +29,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import android.os.Bundle;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ver_datos_tutor extends AppCompatActivity {
 
-    TextView nombre, especialidad, descripcion, habilidades;
+    TextView nombre, especialidad1, especialidad2,especialidad3,descripcion, habilidades1,habilidades2,habilidades3;
     Button buttonContactar;
     ImageView foto;
-    String numero;
+    String numero, foto_text;
     String id_tutor=null;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +56,19 @@ public class ver_datos_tutor extends AppCompatActivity {
         System.out.println("ID RECUPERADO DE HOMEPAGE= "+id_tutor);
 
         nombre=(TextView)findViewById(R.id.textView_nombre);
-        especialidad=(TextView)findViewById(R.id.textView_especialidad);
+        especialidad1=(TextView)findViewById(R.id.textView_especialidad1);
+        especialidad2=(TextView)findViewById(R.id.textView_especialidad2);
+        especialidad3=(TextView)findViewById(R.id.textView_especialidad3);
         descripcion=(TextView)findViewById(R.id.textView_descripcion);
-        habilidades=(TextView)findViewById(R.id.textView_habilidades);
+        habilidades1=(TextView)findViewById(R.id.textView_habilidades1);
+        habilidades2=(TextView)findViewById(R.id.textView_habilidades2);
+        habilidades3=(TextView)findViewById(R.id.textView_habilidades3);
         buttonContactar=(Button)findViewById(R.id.buttonContactar);
         foto=(ImageView)findViewById(R.id.id_foto);
-        new ver_datos_tutor.Task().execute();
+        //new ver_datos_tutor.Task().execute();
+
+        queue = Volley.newRequestQueue(this);
+        MetodoGet();
 
         //cuando damos click en boton contactar
         buttonContactar.setOnClickListener(new View.OnClickListener() {
@@ -79,59 +101,52 @@ public class ver_datos_tutor extends AppCompatActivity {
         return is_installed;
     }
 
+    //*************************************************
+    private void MetodoGet(){
 
-    //******************************CONEXION A LA BASE DE DATOS*************************/
-    class Task extends AsyncTask<Void, Void, Void> {
-        String records_nombre = "",records_especialidad = "", records_descripcion = "",records_habilidades = "",records_foto = "",error = "";
+        String endpoint="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?id="+id_tutor;
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://buscatutordatabase.cuxsffuy95k9.us-east-1.rds.amazonaws.com:3306/buscatutor?UseUnicode=true&characterEncoding=utf8", "admin", "admin12345678");
-                Statement statement = connection.createStatement();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, endpoint, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
 
-                /*Cargamos los datos*/
-                //PreparedStatement sql_cargar = connection.prepareStatement("SELECT * FROM test WHERE id_test=?");
-                PreparedStatement sql_cargar = connection.prepareStatement("SELECT T.id_tutor, E.nombre_completo,  ET.desc_especialidad, T.descripcion, HT.desc_habilidad, E.num_telefono, T.foto FROM Tutor as T\n" +
-                                                                                                                                                    "\tLEFT JOIN Estudiante as E ON T.id_estudiante=E.id_estudiante\n" +
-                                                                                                                                                    "    LEFT JOIN EspecialidadesTutor as ET  ON T.id_tutor=ET.id_tutor\n" +
-                                                                                                                                                    "    LEFT JOIN HabilidadesTutor as HT ON T.id_tutor=HT.id_tutor\n" +
-                                                                                                                                                    "    WHERE T.id_tutor=?\n" +
-                                                                                                                                                    "    LIMIT 1\n" +
-                                                                                                                                                    "    ;");
-                sql_cargar.setString(1,id_tutor);   //setInt, setDouble
-                ResultSet resultSet = sql_cargar.executeQuery();
-                while (resultSet.next()) {
-                    records_nombre = resultSet.getString(2) ;
-                    records_especialidad = resultSet.getString(3) ;
-                    records_descripcion = resultSet.getString(4) ;
-                    records_habilidades = resultSet.getString(5) ;
-                    numero = resultSet.getString(6) ;
-                    records_foto = resultSet.getString(7) ;
+                try {
+                    JSONArray mJsonArray = response.getJSONArray("tutores");
+                    JSONObject mJsonObject = mJsonArray.getJSONObject(mJsonArray.length()-1);
+                    nombre.setText(mJsonObject.getString("nombre_completo"));
+                    numero=mJsonObject.getString("num_telefono");
+                    foto_text=mJsonObject.getString("foto");
+                    descripcion.setText(mJsonObject.getString("descripcion"));
+
+                    /*ArrayList<Object> lista_especialidades = new ArrayList<Object>();
+                    for (int i=0;i<mJsonObject.getJSONArray("especialidades").length();i++){
+                        System.out.println(mJsonObject.getJSONArray("especialidades").get(i));
+                        lista_especialidades.add(mJsonObject.getJSONArray("especialidades").getString(i));
+                    }
+                    System.out.println(lista_especialidades);*/
+                    Picasso.get()
+                            .load(foto_text)
+                            .error(R.mipmap.ic_launcher_round)
+                            .into(foto);
+
+                    especialidad1.setText(mJsonObject.getJSONArray("especialidades").getString(0));
+                    habilidades1.setText(mJsonObject.getJSONArray("habilidades").getString(0));
+                    especialidad2.setText(mJsonObject.getJSONArray("especialidades").getString(1));
+                    habilidades2.setText(mJsonObject.getJSONArray("habilidades").getString(1));
+                    habilidades3.setText(mJsonObject.getJSONArray("habilidades").getString(2));
+                    especialidad3.setText(mJsonObject.getJSONArray("especialidades").getString(2));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                resultSet.close();
-                /* fin de cargar datos */
 
-            } catch (Exception e) {
-                error = e.toString();
             }
-            return null;
-        }
-        @Override
-        //Despues de cargar los datos
-        protected void onPostExecute(Void aVoid) {
-            nombre.setText(records_nombre);
-            especialidad.setText(records_especialidad);
-            descripcion.setText(records_descripcion);
-            habilidades.setText(records_habilidades);
-            Picasso.get()
-                    .load(records_foto)
-                    .error(R.mipmap.ic_launcher_round)
-                    .into(foto);
-            if(error != "")
-                //b.setText(error);
-                super.onPostExecute(aVoid);
-        }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(request);
     }
 }
