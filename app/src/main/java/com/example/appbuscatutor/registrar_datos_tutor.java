@@ -37,10 +37,15 @@ public class registrar_datos_tutor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
                 String desc =new String(edtDescripcion.getText().toString());
                 String hab =new String(edtHabilidades.getText().toString());
                 String esp =new String(edtEspecialidad.getText().toString());
                 Intent intent = new Intent(getApplicationContext(), paypal.class);
+
+                //ERICKA DEBE PASAR ID DEL ESTUDIANTE
+                intent.putExtra("id_estudiante", getIntent().getExtras().getString("id_estudiante"));
                 intent.putExtra("descripcion", desc);
                 intent.putExtra("habilidades", hab);
                 intent.putExtra("especialidades", esp);

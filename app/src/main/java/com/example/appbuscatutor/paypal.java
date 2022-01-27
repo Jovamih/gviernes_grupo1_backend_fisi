@@ -53,6 +53,7 @@ public class paypal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        String id_estudiante = getIntent().getExtras().getString("id_estudiante");
         String descripcion = getIntent().getExtras().getString("descripcion");
         String habilidades = getIntent().getExtras().getString("habilidades");
         String especialidades = getIntent().getExtras().getString("especialidades");
