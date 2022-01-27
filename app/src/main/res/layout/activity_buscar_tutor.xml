@@ -11,15 +11,16 @@
         android:id="@+id/svSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:background="@drawable/border"
-        android:textColor="@color/white"
-        android:layout_marginLeft="30sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
         android:layout_marginTop="15sp"
-        android:layout_marginRight="30sp"
+        android:background="@drawable/border"
+        android:iconifiedByDefault="false"
+        android:textColor="@color/white"
         android:textSize="14sp"
-        android:queryHint="Buscar tutor"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:queryHint="Buscar tutor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="30dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

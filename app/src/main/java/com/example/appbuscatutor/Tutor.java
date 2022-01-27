@@ -6,14 +6,17 @@ public class Tutor implements Serializable {
     private String nombre;
     private String descripcion;
     //private String foto;
-    private int imgResource;
+    private String imgResource;
     private int id;
 
+    private String especialidades;
+
     //Constructor
-    public Tutor (String nombre, String descripcion, int foto, int id){
+    public Tutor (String nombre, String descripcion, String foto, String esp, int id){
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.imgResource=foto;
+        this.especialidades = esp;
         this.id = id;
     }
 
@@ -34,24 +37,28 @@ public class Tutor implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public int getImgResource() {
+    public String getImgResource() {
         return imgResource;
     }
 
-    public void setImgResource(int imgResource) {
+    public void setImgResource (String imgResource) {
         this.imgResource = imgResource;
     }
 
-    /*public String getFoto() {
-        return foto;
-    }*/
-
-   /* public void setFoto(String foto) {
-        this.foto = foto;
-    }*/
 
     public void setId(int id){
         this.id=id;
     }
 
+    public int getId(){
+        return id;
+    }
+
+    public String getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(String especialidades) {
+        this.especialidades = especialidades;
+    }
 }
