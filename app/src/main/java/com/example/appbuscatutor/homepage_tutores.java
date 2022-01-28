@@ -261,7 +261,8 @@ public class homepage_tutores extends AppCompatActivity {
         buttonLateral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                Intent intent=new Intent(homepage_tutores.this,Menu.class);
+                intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
                 startActivity(intent);
             }
         });

@@ -32,7 +32,7 @@ private Toolbar toolbar;
 
     ImageView foto;
     String foto_text;
-    String id_estudiante=null;
+    private String id_estudiante=null;
     private RequestQueue queue;
     @Override
     public void onBackPressed() {
@@ -99,6 +99,7 @@ private Toolbar toolbar;
         }else
         if (id == R.id.SerTutor){
             Intent intent = new Intent(Menu.this, registrar_datos_tutor.class);
+            intent.putExtra("id_estudiante", id_estudiante);
             startActivity(intent);
             return true;
         }else

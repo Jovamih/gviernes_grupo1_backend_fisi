@@ -27,6 +27,9 @@
         <activity
             android:name=".buscar_tutor"
             android:exported="false" />
+        <activity
+            android:name=".Menu"
+            android:exported="false" />
         <activity android:name=".terminos_condiciones" />
         <activity android:name=".ver_datos_tutor" />
         <activity android:name=".registrar_datos_tutor" />

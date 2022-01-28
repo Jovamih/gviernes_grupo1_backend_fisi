@@ -45,7 +45,7 @@ import java.util.Map;
 public class paypal extends AppCompatActivity {
 
     PayPalButton payPalButton;
-
+    String id_estudiante = null;
 
 
     public static final String YOUR_CLIENT_ID = "AaE0sFL_clUJomQ0mZZUG35rBqw-MqzxP-0gPnZSqjDq_If3IpEVbKrvR4DP5qjlTYiNTBXF31XD6d4T";
@@ -56,6 +56,7 @@ public class paypal extends AppCompatActivity {
         String descripcion = getIntent().getExtras().getString("descripcion");
         String habilidades = getIntent().getExtras().getString("habilidades");
         String especialidades = getIntent().getExtras().getString("especialidades");
+        id_estudiante = getIntent().getExtras().getString("id_estudiante");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paypal);
@@ -109,7 +110,8 @@ public class paypal extends AppCompatActivity {
                             @Override
                             public void onCaptureComplete(@NotNull CaptureOrderResult result) {
                                 Log.i("CaptureOrder", String.format("CaptureOrderResult: %s", result));
-                                ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante=105&descripcion=" +
+                                ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante="+
+                                        id_estudiante+"&descripcion=" +
                                         descripcion +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
                                         habilidades + "&especialidades=" +
                                         especialidades);
