@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class registrar_datos_tutor extends AppCompatActivity {
 
     String ruta_foto;
-
+    String id_estudiante = null;
     EditText edtEspecialidad, edtDescripcion, edtHabilidades, edtFoto;
     Button btnAgrega;
 
@@ -26,6 +26,8 @@ public class registrar_datos_tutor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_datos_tutor);
 
+        Intent intent=getIntent();
+        id_estudiante=intent.getStringExtra("id_estudiante");
         edtEspecialidad = (EditText)findViewById(R.id.input_especialidad);
         edtDescripcion = (EditText)findViewById(R.id.input_descripcion);
         edtHabilidades = (EditText)findViewById(R.id.input_habilidades);
@@ -44,6 +46,7 @@ public class registrar_datos_tutor extends AppCompatActivity {
                 intent.putExtra("descripcion", desc);
                 intent.putExtra("habilidades", hab);
                 intent.putExtra("especialidades", esp);
+                intent.putExtra("id_estudiante", id_estudiante);
                 startActivity(intent);
             }
         });
