@@ -92,6 +92,7 @@ private Toolbar toolbar;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        System.out.println("ID DE ERICKA" + id);
         if (id == R.id.MisFavoritos){
             Intent intent = new Intent(Menu.this, homepage_tutores.class);
             startActivity(intent);
