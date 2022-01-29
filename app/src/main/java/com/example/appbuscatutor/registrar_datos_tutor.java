@@ -1,6 +1,7 @@
 package com.example.appbuscatutor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 
 
 public class registrar_datos_tutor extends AppCompatActivity {
-
+    DrawerLayout drawerLayout;
     String ruta_foto;
     String id_estudiante = null;
     EditText edtEspecialidad, edtDescripcion, edtHabilidades, edtFoto;
@@ -25,7 +26,7 @@ public class registrar_datos_tutor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_datos_tutor);
-
+        drawerLayout =findViewById(R.id.drawer_layout);
         Intent intent=getIntent();
         id_estudiante=intent.getStringExtra("id_estudiante");
         edtEspecialidad = (EditText)findViewById(R.id.input_especialidad);
@@ -68,4 +69,36 @@ public class registrar_datos_tutor extends AppCompatActivity {
         }
     }
     /*fin de cargar imagen - la direccion de la imagen esta en la variable "ruta_foto"*/
+
+    //conexion aal menu lateral++++++++++++++++++++
+
+
+    public void ClickMenu(View view){
+        homepage_tutores.openDrawer(drawerLayout);
+    }
+    public void ClickLogo(View view){
+        homepage_tutores.openDrawer(drawerLayout);
+    }
+    public void ClickPerfil(View view){
+        homepage_tutores.redirectActivity(this,Perfil.class);
+    }
+    public void ClickMisFavoritos(View view){
+        homepage_tutores.redirectActivity(this,homepage_tutores.class);
+    }
+    public void ClickMisTutores(View view){
+        recreate();
+    }
+    public void ClickBuscarTutor(View view){
+        homepage_tutores.redirectActivity(this,buscar_tutor.class);
+    }
+    public void ClickHistorial(View view){
+        homepage_tutores.redirectActivity(this,Historial.class);
+    }
+    public void ClickCerrarSesion(View view){
+        homepage_tutores.logout(this);
+    }
+    protected void onPause(){
+        super.onPause();
+        homepage_tutores.closeDrawer(drawerLayout);
+    }
 }
