@@ -2,12 +2,14 @@ package com.example.appbuscatutor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,21 +29,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class buscar_tutor extends AppCompatActivity implements RecyclerAdapter.RecyclerItemClick, SearchView.OnQueryTextListener {
-
+    DrawerLayout drawerLayout;
     private RequestQueue requestQueue;
     private RecyclerView rvLista;
     private SearchView svSearch;
     private RecyclerAdapter adapter;
     private List<Tutor> items = new ArrayList<>();
 
-    private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=10";
+    private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=-1";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_tutor);
-
+        drawerLayout =findViewById(R.id.drawer_layout);
         requestQueue= Volley.newRequestQueue(getApplicationContext());
 
         get_tutores_disponibles_response(new VolleyCallback() {
@@ -148,5 +150,38 @@ public class buscar_tutor extends AppCompatActivity implements RecyclerAdapter.R
         Intent intent = new Intent(this, ver_datos_tutor.class);
         intent.putExtra("itemDetail", item);
         startActivity(intent);
+    }
+
+    //conexion aal menu lateral++++++++++++++++++++
+
+
+    public void ClickMenu(View view){
+        homepage_tutores.openDrawer(drawerLayout);
+    }
+    public void ClickLogo(View view){
+        homepage_tutores.openDrawer(drawerLayout);
+    }
+    public void ClickPerfil(View view){
+        homepage_tutores.redirectActivity(this,Perfil.class);
+    }
+    public void ClickMisFavoritos(View view){
+        homepage_tutores.redirectActivity(this,homepage_tutores.class);
+    }
+    public void ClickMisTutores(View view){
+        homepage_tutores.redirectActivity(this,registrar_datos_tutor.class);
+    }
+    public void ClickBuscarTutor(View view){
+        recreate();
+
+    }
+    public void ClickHistorial(View view){
+        homepage_tutores.redirectActivity(this,Historial.class);
+    }
+    public void ClickCerrarSesion(View view){
+        homepage_tutores.logout(this);
+    }
+    protected void onPause(){
+        super.onPause();
+        homepage_tutores.closeDrawer(drawerLayout);
     }
 }
