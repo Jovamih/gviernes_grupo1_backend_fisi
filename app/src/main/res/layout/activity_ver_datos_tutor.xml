@@ -8,22 +8,7 @@
     android:id="@+id/drawer_layout"
     android:background="@drawable/background"
     tools:context=".ver_datos_tutor">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <include
-            layout="@layout/main_toolbar"/>
 
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/white">
-
-        <include layout="@layout/main_nav_drawer" />
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
