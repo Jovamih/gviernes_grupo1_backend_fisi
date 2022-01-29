@@ -126,7 +126,10 @@ public class homepage_tutores extends AppCompatActivity {
         }
     }
     public void ClickPerfil(View view){
-        redirectActivity(this,Perfil.class);
+        Intent intent = new Intent(getApplicationContext(), Perfil.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+
 
     }
     public void ClickMisFavoritos(View view){
