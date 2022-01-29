@@ -115,7 +115,9 @@ public class paypal extends AppCompatActivity {
                                         descripcion +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
                                         habilidades + "&especialidades=" +
                                         especialidades);
+                                System.out.println("ID ESTUDIANTE PAYPAL: " + id_estudiante);
                                 Intent intent = new Intent(paypal.this, verificacion_paypal.class);
+                                intent.putExtra("id_estudiante", id_estudiante);
                                 startActivity(intent);
                             }
                         });

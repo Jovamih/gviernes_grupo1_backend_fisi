@@ -48,6 +48,7 @@ public class registrar_datos_tutor extends AppCompatActivity {
                 intent.putExtra("habilidades", hab);
                 intent.putExtra("especialidades", esp);
                 intent.putExtra("id_estudiante", id_estudiante);
+                System.out.println("ID TANQUE:" + id_estudiante);
                 startActivity(intent);
             }
         });

@@ -36,7 +36,7 @@ public class buscar_tutor extends AppCompatActivity implements RecyclerAdapter.R
     private RecyclerAdapter adapter;
     private List<Tutor> items = new ArrayList<>();
 
-    private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=10";
+    private String ENDPOINT_DISPONIBLES="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores?select=-1";
 
 
     @Override

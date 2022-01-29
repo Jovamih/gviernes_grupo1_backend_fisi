@@ -25,7 +25,7 @@
             android:iconifiedByDefault="false"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:queryHint="Buscar tutor"
+            app:queryHint="Busca por especialidad"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="30dp"/>
 

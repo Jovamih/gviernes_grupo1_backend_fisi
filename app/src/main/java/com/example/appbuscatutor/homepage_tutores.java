@@ -132,14 +132,21 @@ public class homepage_tutores extends AppCompatActivity {
     public void ClickMisFavoritos(View view){
         recreate();
     }
+
     public void ClickMisTutores(View view){
-        redirectActivity(this,registrar_datos_tutor.class);
+        Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickBuscarTutor(View view){
-        redirectActivity(this,buscar_tutor.class);
+        Intent intent = new Intent(getApplicationContext(), buscar_tutor.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickHistorial(View view){
-        redirectActivity(this,Historial.class);
+        Intent intent = new Intent(getApplicationContext(), Historial.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickCerrarSesion(View view){
         logout(this);
@@ -174,39 +181,8 @@ public class homepage_tutores extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
     //******************************************************/
-  /*  private void MetGet(){
 
-        String endpoint="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/estudiantes?id=10";
-        JsonObjectRequest requestQueue = new JsonObjectRequest(Request.Method.GET, endpoint, null, new Response.Listener<JSONObject>()  {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    TextView nombre, correo;
-
-                    nombre=(TextView)findViewById(R.id.nombre);
-                    correo=(TextView)findViewById(R.id.correo);
-                    JSONObject mJsonObject = response.getJSONObject("data");
-                    String estado = response.getString("success");
-                    if(estado == "true"){
-                        nombre.setText(mJsonObject.getString("nombre_completo"));
-                        correo.setText(mJsonObject.getString("correo"));
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        queue.add(requestQueue);
-    }*/
-//+++++++++menu++++++++
+    //+++++++++menu++++++++
 
     public void build_items_tutores(List<TutoresFavoritos> tutores){
         System.out.println("EJECUTANDO EL RECYCLER VIEW");

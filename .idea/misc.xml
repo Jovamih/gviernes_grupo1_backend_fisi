@@ -9,6 +9,15 @@
         <entry key="..\:/AppBuscaTutor/app/src/main/res/menu/my_menu.xml" value="0.1" />
         <entry key="..\:/Users/BRUNO/AndroidStudioProjects/demo_my_paypal/AppBuscaTutor/app/src/main/res/layout/activity_paypal.xml" value="0.1094224924012158" />
         <entry key="..\:/Users/BRUNO/AndroidStudioProjects/demo_my_paypal/AppBuscaTutor/app/src/main/res/layout/activity_verificacion_paypal.xml" value="0.21145833333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_buscar_tutor.xml" value="0.2694746376811594" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_historial.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_homepage_tutores.xml" value="0.22" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.1331081081081081" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/main_nav_drawer.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/main_toolbar.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/layout/my_toolbar.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/BRUNO/AndroidStudioProjects/projecto_movil/gviernes_grupo1_backend_fisi/app/src/main/res/menu/my_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/layout/activity_registrar_datos_tutor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.36666666666666664" />
@@ -19,33 +28,6 @@
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/layout/recycler_template.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2483108108108108" />
         <entry key="..\:/Users/Danny/Documents/gviernes_grupo1_backend_fisiV3/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14358108108108109" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable-v24/ic_buscartutor.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable-v24/ic_historialpagos.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable-v24/ic_perfil.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable-v24/ic_sertutor.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable-v24/ic_tutorfavorito.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable/border.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable/ic_cerrar.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/drawable/ic_more.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_buscar_tutor.xml" value="0.264" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_historial.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_homepage_tutores.xml" value="0.264" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_item_tutor.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_paypal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_perfil.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_registrar_datos_tutor.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_registrar_usuario.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_splashscreen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/activity_verificacion_paypal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/main_nav_drawer.xml" value="0.264" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/main_toolbar.xml" value="0.2" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/menu.xml" value="0.2" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/my_toolbar.xml" value="0.2" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/layout/nav_header_main.xml" value="0.1" />
-        <entry key="..\:/Users/Ericka/Desktop/gviernes_grupo1_backend_fisi/app/src/main/res/menu/my_menu.xml" value="0.264" />
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/border.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/border_foto.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/drawable/bottom_nav_menu.xml" value="0.1" />
@@ -63,6 +45,23 @@
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.25" />
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/layout/recycler_template.xml" value="0.25" />
         <entry key="..\:/Users/avira/AndroidStudioProjects/AppBuscaTutor/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_homepage_vista_tutores.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/activity_ver_datos_tutor.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/-gviernes_grupo1_frontend_fisi/app/src/main/res/layout/recycler_template.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/drawable/search_icon.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/drawable/settings_icon.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/drawable/user_icon.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/activity_buscar_tutor.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/activity_homepage_tutores.xml" value="0.22" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/activity_homepage_tutorfavorito.xml" value="0.1" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/activity_homepage_vista_tutores.xml" value="0.25" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/menu.xml" value="0.2" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/my_toolbar.xml" value="0.2" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/nav_header_main.xml" value="0.2" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/layout/recycler_template.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/avira/Desktop/VIII CICLO/DESARROLLO MOVIL/AppBuscaTutorBACKEND/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
       </map>
     </option>
   </component>
