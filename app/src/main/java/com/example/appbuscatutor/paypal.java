@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.paypal.checkout.PayPalCheckout;
 import com.paypal.checkout.approve.Approval;
 import com.paypal.checkout.approve.OnApprove;
@@ -37,9 +38,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class paypal extends AppCompatActivity {
@@ -48,14 +52,23 @@ public class paypal extends AppCompatActivity {
     String id_estudiante = null;
 
 
+
+    //Varables requeridas para el envío del correo
+    private String correoDestino = "alefran2020@gmail.com";
+    private String api_correo = "https://api-dm-email.herokuapp.com/api/enviar/";
+    private RequestQueue requestQueue;
+    private JSONObject jsoncorreo;
+
     public static final String YOUR_CLIENT_ID = "AaE0sFL_clUJomQ0mZZUG35rBqw-MqzxP-0gPnZSqjDq_If3IpEVbKrvR4DP5qjlTYiNTBXF31XD6d4T";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        requestQueue= Volley.newRequestQueue(this);
         String descripcion = getIntent().getExtras().getString("descripcion");
         String habilidades = getIntent().getExtras().getString("habilidades");
         String especialidades = getIntent().getExtras().getString("especialidades");
+        //String correoDestino = getIntent().getExtras().getString("correo");
         id_estudiante = getIntent().getExtras().getString("id_estudiante");
 
         super.onCreate(savedInstanceState);
@@ -110,14 +123,18 @@ public class paypal extends AppCompatActivity {
                             @Override
                             public void onCaptureComplete(@NotNull CaptureOrderResult result) {
                                 Log.i("CaptureOrder", String.format("CaptureOrderResult: %s", result));
-                                ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante="+
+                                /*ejecutarServicio("https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/registro-tutor?id_estudiante="+
                                         id_estudiante+"&descripcion=" +
                                         descripcion +"&foto=https://tinyurl.com/397pywh4&habilidades=" +
                                         habilidades + "&especialidades=" +
                                         especialidades);
+
+                                 */
                                 System.out.println("ID ESTUDIANTE PAYPAL: " + id_estudiante);
+
+                                //Para el correo
+                                enviarMail(api_correo + correoDestino);
                                 Intent intent = new Intent(paypal.this, verificacion_paypal.class);
-                                intent.putExtra("id_estudiante", id_estudiante);
                                 startActivity(intent);
                             }
                         });
@@ -147,6 +164,27 @@ public class paypal extends AppCompatActivity {
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(), "OPERACION EXITOSA", Toast.LENGTH_SHORT).show();
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return null;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void enviarMail (String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Envío correcto", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
