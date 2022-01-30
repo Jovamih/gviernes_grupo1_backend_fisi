@@ -225,7 +225,7 @@ public class homepage_tutores extends AppCompatActivity {
                         //++++++++++++++++++++++++++++++++++++++++++++++++++++
                         textNombre.setText(data.getString("nombre_completo"));
                         Picasso.get()
-                                .load("https://tinyurl.com/nhz83vce")
+                                .load("https://tinyurl.com/469s88db")
                                 .error(R.mipmap.ic_launcher_round)
                                 .into(image);
                         System.out.println("Perfil de usuario cargado");
