@@ -184,7 +184,7 @@ public class paypal extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Envío correcto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Notificación del pago enviado a su correo", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
