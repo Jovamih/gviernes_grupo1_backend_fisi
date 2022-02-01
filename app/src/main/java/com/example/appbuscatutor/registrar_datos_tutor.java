@@ -104,7 +104,9 @@ public class registrar_datos_tutor extends AppCompatActivity {
        // homepage_tutores.redirectActivity(this,Perfil.class);
     }
     public void ClickMisFavoritos(View view){
-        homepage_tutores.redirectActivity(this,homepage_tutores.class);
+        Intent intent = new Intent(getApplicationContext(), homepage_tutores.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickMisTutores(View view){
         recreate();

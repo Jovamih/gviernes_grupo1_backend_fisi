@@ -181,12 +181,13 @@ public class buscar_tutor extends AppCompatActivity implements RecyclerAdapter.R
 
     }
     public void ClickMisFavoritos(View view){
-
-        homepage_tutores.redirectActivity(this,homepage_tutores.class);
+        Intent intent = new Intent(getApplicationContext(),homepage_tutores.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickMisTutores(View view){
         //homepage_tutores.redirectActivity(this,registrar_datos_tutor.class);
-        Intent intent = new Intent(getApplicationContext(), registrar_datos_tutor.class);
+        Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
         intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
         startActivity(intent);
     }
