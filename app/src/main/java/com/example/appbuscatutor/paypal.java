@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -37,6 +39,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -58,6 +61,7 @@ public class paypal extends AppCompatActivity {
     private String api_correo = "https://api-dm-email.herokuapp.com/api/enviar/";
     private RequestQueue requestQueue;
     private JSONObject jsoncorreo;
+    private String ENDPOINT_ESTUDIANTE="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/estudiantes?id=%d";
 
     public static final String YOUR_CLIENT_ID = "AaE0sFL_clUJomQ0mZZUG35rBqw-MqzxP-0gPnZSqjDq_If3IpEVbKrvR4DP5qjlTYiNTBXF31XD6d4T";
 
@@ -68,9 +72,8 @@ public class paypal extends AppCompatActivity {
         String descripcion = getIntent().getExtras().getString("descripcion");
         String habilidades = getIntent().getExtras().getString("habilidades");
         String especialidades = getIntent().getExtras().getString("especialidades");
-        //String correoDestino = getIntent().getExtras().getString("correo");
         id_estudiante = getIntent().getExtras().getString("id_estudiante");
-
+        get_correo_estudiante();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paypal);
 
@@ -200,4 +203,29 @@ public class paypal extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+    public void get_correo_estudiante(){
+        ENDPOINT_ESTUDIANTE=String.format(ENDPOINT_ESTUDIANTE,id_estudiante);
+        JsonObjectRequest estudiante_request= new JsonObjectRequest(Request.Method.GET, ENDPOINT_ESTUDIANTE, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Boolean success= response.getBoolean("success");
+                    if(success){
+                        // Si el perfil del estudiante existe
+                        JSONObject data= response.getJSONObject("data");
+                        correoDestino = data.getString("correo");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Error de conexion a la API");
+            }
+        });
+        requestQueue.add(estudiante_request);
+    }
+
 }
