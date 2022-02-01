@@ -3,15 +3,37 @@ package com.example.appbuscatutor;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+//***************
 
 public class Perfil extends AppCompatActivity {
-
+    private String id_estudiante=null;
+    private RequestQueue queue;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //***********************+
+        setContentView(R.layout.main_nav_drawer);
+        Intent intent=getIntent();
+        id_estudiante=intent.getStringExtra("id_estudiante");
+        System.out.println("ID RECUPERADO DE homepage "+id_estudiante);
+        queue = Volley.newRequestQueue(this);
+        MetGet();
+        //+++++++++++++++++++++++
         setContentView(R.layout.activity_perfil);
         drawerLayout =findViewById(R.id.drawer_layout);
     }
@@ -25,16 +47,28 @@ public class Perfil extends AppCompatActivity {
         recreate();
     }
     public void ClickMisFavoritos(View view){
-        homepage_tutores.redirectActivity(this,homepage_tutores.class);
+
+        Intent intent = new Intent(getApplicationContext(), homepage_tutores.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
     }
     public void ClickMisTutores(View view){
-        homepage_tutores.redirectActivity(this,registrar_datos_tutor.class);
-    }
+        //homepage_tutores.redirectActivity(this,registrar_datos_tutor.class);
+        Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+     }
     public void ClickBuscarTutor(View view){
-        homepage_tutores.redirectActivity(this,buscar_tutor.class);
+        Intent intent = new Intent(getApplicationContext(),buscar_tutor.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+
     }
     public void ClickHistorial(View view){
-        homepage_tutores.redirectActivity(this,Historial.class);
+        Intent intent = new Intent(getApplicationContext(), Historial.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+
     }
     public void ClickCerrarSesion(View view){
         homepage_tutores.logout(this);
@@ -42,5 +76,37 @@ public class Perfil extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         homepage_tutores.closeDrawer(drawerLayout);
+    }
+    private void MetGet(){
+
+        String endpoint="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/estudiantes?id="+id_estudiante;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, endpoint, null, new Response.Listener<JSONObject>()  {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    TextView nombre, correo;
+
+                    nombre=(TextView)findViewById(R.id.nombre);
+                    correo=(TextView)findViewById(R.id.correo);
+                    JSONObject mJsonObject = response.getJSONObject("data");
+                    String estado = response.getString("success");
+                    if(estado == "true"){
+                        nombre.setText(mJsonObject.getString("nombre_completo"));
+                        correo.setText(mJsonObject.getString("correo"));
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(request);
     }
 }
