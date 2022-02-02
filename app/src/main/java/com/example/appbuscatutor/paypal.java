@@ -53,7 +53,7 @@ public class paypal extends AppCompatActivity {
 
     PayPalButton payPalButton;
     String id_estudiante = null;
-
+    int id_est=0;
 
 
     //Varables requeridas para el envío del correo
@@ -73,6 +73,7 @@ public class paypal extends AppCompatActivity {
         String habilidades = getIntent().getExtras().getString("habilidades");
         String especialidades = getIntent().getExtras().getString("especialidades");
         id_estudiante = getIntent().getExtras().getString("id_estudiante");
+        id_est=Integer.parseInt(id_estudiante);
         get_correo_estudiante();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paypal);
@@ -136,8 +137,10 @@ public class paypal extends AppCompatActivity {
                                 System.out.println("ID ESTUDIANTE PAYPAL: " + id_estudiante);
 
                                 //Para el correo
+                                System.out.println("CORREO: " + correoDestino);
                                 enviarMail(api_correo + correoDestino);
                                 Intent intent = new Intent(paypal.this, verificacion_paypal.class);
+                                intent.putExtra("id_estudiante", id_estudiante);
                                 startActivity(intent);
                             }
                         });
@@ -204,7 +207,7 @@ public class paypal extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     public void get_correo_estudiante(){
-        ENDPOINT_ESTUDIANTE=String.format(ENDPOINT_ESTUDIANTE,id_estudiante);
+        ENDPOINT_ESTUDIANTE=String.format(ENDPOINT_ESTUDIANTE,id_est);
         JsonObjectRequest estudiante_request= new JsonObjectRequest(Request.Method.GET, ENDPOINT_ESTUDIANTE, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
