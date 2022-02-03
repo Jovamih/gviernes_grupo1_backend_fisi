@@ -99,6 +99,7 @@ public class homepage_tutores extends AppCompatActivity {
             }
         });
 
+        /*
         //Agregamos los eventos de click lateral
         //OnClickMenuBarraLateral();
         //Agregamos la menu
@@ -107,7 +108,7 @@ public class homepage_tutores extends AppCompatActivity {
         OnClickMenuBuscarTutor();
         //menu de mostrar perfil
         OnClickMenuPerfil();
-
+        */
 
 
     }
