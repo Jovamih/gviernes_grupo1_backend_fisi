@@ -68,7 +68,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     public void filter(final String strSearch) {
-        if (strSearch.length() == 0) {
+        //Paso la cadena que se busca a minusculas
+        String SearchMayus = strSearch.toLowerCase();
+        if (SearchMayus.length() == 0) {
             items.clear();
             items.addAll(originalItems);
         }
@@ -76,7 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 items.clear();
                 List<Tutor> collect = originalItems.stream()
-                        .filter(i -> i.getEspecialidades().toLowerCase().contains(strSearch))
+                        .filter(i -> i.getEspecialidades().toLowerCase().contains(SearchMayus))
                         .collect(Collectors.toList());
 
                 items.addAll(collect);
