@@ -1,14 +1,23 @@
 package com.example.appbuscatutor;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.widget.Toast;
 
+
+
+import android.view.View;
+import android.widget.Button;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class homepage_tutores extends AppCompatActivity {
+    DrawerLayout drawerLayout;
     private RequestQueue requestQueue;
     private int id_estudiante=0;
     private String ENDPOINT_FAVORITOS="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/tutores-favoritos?id=%d";
@@ -40,7 +50,13 @@ public class homepage_tutores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_nav_drawer);
+
+        //MetGet();
+        //+++++++++++++++++++++++
         setContentView(R.layout.activity_homepage_tutores);
+        //asignando variable
+        drawerLayout = findViewById(R.id.drawer_layoyut);
         try{
             Intent intent= getIntent();
             id_estudiante=Integer.parseInt(intent.getStringExtra("id_estudiante"));
@@ -80,9 +96,96 @@ public class homepage_tutores extends AppCompatActivity {
             }
         });
 
+        //Agregamos los eventos de click lateral
+        //OnClickMenuBarraLateral();
+        //Agregamos la menu
+        OnClickMenuHomepage();
+        //meni de buscar tutor
+        OnClickMenuBuscarTutor();
+        //menu de mostrar perfil
+        OnClickMenuPerfil();
+
 
 
     }
+//+++++++++menu++++++++
+    public void ClickMenu(View view){
+        openDrawer(drawerLayout);
+}
+
+    static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+    public void ClickLogo(View view){
+        closeDrawer(drawerLayout);
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+    public void ClickPerfil(View view){
+        Intent intent = new Intent(getApplicationContext(), Perfil.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+
+
+    }
+    public void ClickMisFavoritos(View view){
+        recreate();
+    }
+
+    public void ClickMisTutores(View view){
+        Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+    }
+    public void ClickBuscarTutor(View view){
+        Intent intent = new Intent(getApplicationContext(), buscar_tutor.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+    }
+    public void ClickHistorial(View view){
+        Intent intent = new Intent(getApplicationContext(), Historial.class);
+        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        startActivity(intent);
+    }
+    public void ClickCerrarSesion(View view){
+        logout(this);
+    }
+    public static void logout(final Activity activity) {
+        AlertDialog.Builder builder =new AlertDialog.Builder(activity);
+        builder.setTitle("Salir");
+        builder.setMessage("Esta seguro que desea salir?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activity.finishAffinity();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+    public static void redirectActivity(Activity activity, Class aClass) {
+        Intent intent = new Intent(activity, aClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        closeDrawer(drawerLayout);
+    }
+    //******************************************************/
+
+    //+++++++++menu++++++++
 
     public void build_items_tutores(List<TutoresFavoritos> tutores){
         System.out.println("EJECUTANDO EL RECYCLER VIEW");
@@ -108,16 +211,24 @@ public class homepage_tutores extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    //++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    TextView nombre, correo;
+                    nombre=(TextView)findViewById(R.id.nombre);
+                    correo=(TextView)findViewById(R.id.correo);
+                    //++++++++++++++++++++++++++++++++++++++++++++++++++++
                     Boolean success= response.getBoolean("success");
                     if(success){ //si el perfil del estudiante existe
                         JSONObject data= response.getJSONObject("data");
                         System.out.println("OBTENIENDO LOS DATOS DEL PERFIL DE USUARIO");
                         TextView textNombre=findViewById(R.id.id_nombre_usuario);
                         ImageView image=findViewById(R.id.id_foto_usuario);
-
+                        //++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        nombre.setText(data.getString("nombre_completo"));
+                        correo.setText(data.getString("correo"));
+                        //++++++++++++++++++++++++++++++++++++++++++++++++++++
                         textNombre.setText(data.getString("nombre_completo"));
                         Picasso.get()
-                                .load("https://tinyurl.com/mwaps96p")
+                                .load("https://tinyurl.com/469s88db")
                                 .error(R.mipmap.ic_launcher_round)
                                 .into(image);
                         System.out.println("Perfil de usuario cargado");
@@ -209,8 +320,55 @@ public class homepage_tutores extends AppCompatActivity {
         requestQueue.add(tutores_disp_response);
 
     }
+    public void OnClickMenuHomepage(){
+        ImageView imgview =  findViewById(R.id.btn_home);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void OnClickMenuBuscarTutor(){
+        ImageView imgview =  findViewById(R.id.btn_buscar);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,buscar_tutor.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void OnClickMenuPerfil(){
+        ImageView imgview =  findViewById(R.id.btn_usuario);
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,homepage_tutores.class);
+                startActivity(intent);
+            }
+        });
+    }
+    /*public void OnClickMenuBarraLateral(){
+        Button buttonLateral =  findViewById(R.id.btn_lateral);
+
+        buttonLateral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(homepage_tutores.this,Menu.class);
+                intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+                startActivity(intent);
+            }
+        });
+    }*/
 
 }
 interface VolleyCallback {
     void onSuccess() throws JSONException;
 }
+
+

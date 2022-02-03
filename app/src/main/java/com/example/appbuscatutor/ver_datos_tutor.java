@@ -44,6 +44,7 @@ public class ver_datos_tutor extends AppCompatActivity {
     ImageView foto;
     String numero, foto_text;
     String id_tutor=null;
+    String nombre_tutor="";
     private RequestQueue queue;
 
     @Override
@@ -77,7 +78,7 @@ public class ver_datos_tutor extends AppCompatActivity {
                 boolean installed = isAppInstalled("com.whatsapp");
                 if (installed){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+"+51"+numero+"&text=¡Hola tutor! Me gustaría ponerme en contacto con usted."));
+                    intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+"+51"+numero+"&text=¡Hola tutor "+nombre_tutor+"! Me gustaría ponerme en contacto con usted."));
                     startActivity(intent);
                 }else{
                     Toast.makeText(ver_datos_tutor.this,"Whatsapp no instalado!",Toast.LENGTH_SHORT).show();
@@ -113,7 +114,8 @@ public class ver_datos_tutor extends AppCompatActivity {
                 try {
                     JSONArray mJsonArray = response.getJSONArray("tutores");
                     JSONObject mJsonObject = mJsonArray.getJSONObject(mJsonArray.length()-1);
-                    nombre.setText(mJsonObject.getString("nombre_completo"));
+                    nombre_tutor=mJsonObject.getString("nombre_completo");
+                    nombre.setText(nombre_tutor);
                     numero=mJsonObject.getString("num_telefono");
                     foto_text=mJsonObject.getString("foto");
                     descripcion.setText(mJsonObject.getString("descripcion"));
