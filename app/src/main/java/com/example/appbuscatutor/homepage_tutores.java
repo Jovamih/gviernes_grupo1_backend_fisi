@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.paypal.pyplcheckout.animation.sliders.SlideOutUpAnimation;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -47,6 +48,8 @@ public class homepage_tutores extends AppCompatActivity {
     private String ENDPOINT_ESTUDIANTE="https://825tzl1d6f.execute-api.us-east-1.amazonaws.com/v1/estudiantes?id=%d";
     //lista de tutores favoritos y/o totales
     List<TutoresFavoritos> lista_tutores= new ArrayList<>();
+    boolean es_tutor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,21 +128,28 @@ public class homepage_tutores extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
+
     public void ClickPerfil(View view){
+        System.out.println("TE ESTOY TOCANDO");
         Intent intent = new Intent(getApplicationContext(), Perfil.class);
         intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+        intent.putExtra("es_tutor", String.valueOf(es_tutor));
         startActivity(intent);
-
-
     }
+
     public void ClickMisFavoritos(View view){
         recreate();
     }
 
     public void ClickMisTutores(View view){
-        Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
-        intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
-        startActivity(intent);
+        if(es_tutor){
+            Toast.makeText(this,"Ya se encuentra registrado como tutor",Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(getApplicationContext(), terminos_condiciones.class);
+            intent.putExtra("id_estudiante", String.valueOf(id_estudiante));
+            intent.putExtra("es_tutor", String.valueOf(es_tutor));
+            startActivity(intent);
+        }
     }
     public void ClickBuscarTutor(View view){
         Intent intent = new Intent(getApplicationContext(), buscar_tutor.class);
@@ -223,6 +233,8 @@ public class homepage_tutores extends AppCompatActivity {
                         TextView textNombre=findViewById(R.id.id_nombre_usuario);
                         ImageView image=findViewById(R.id.id_foto_usuario);
                         //++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        es_tutor = data.getBoolean("es_tutor");
+                        System.out.println("QUERIENDO SER TUTOR" + es_tutor);
                         nombre.setText(data.getString("nombre_completo"));
                         correo.setText(data.getString("correo"));
                         //++++++++++++++++++++++++++++++++++++++++++++++++++++

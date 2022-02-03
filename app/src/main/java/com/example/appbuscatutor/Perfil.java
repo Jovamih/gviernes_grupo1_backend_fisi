@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 public class Perfil extends AppCompatActivity {
     private String id_estudiante=null;
+    private int es_tutor;
     private RequestQueue queue;
     DrawerLayout drawerLayout;
     @Override
@@ -30,6 +31,7 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.main_nav_drawer);
         Intent intent=getIntent();
         id_estudiante=intent.getStringExtra("id_estudiante");
+        //es_tutor = intent.getStringExtra("es_tutor");
         System.out.println("ID RECUPERADO DE homepage "+id_estudiante);
         queue = Volley.newRequestQueue(this);
         MetGet();
