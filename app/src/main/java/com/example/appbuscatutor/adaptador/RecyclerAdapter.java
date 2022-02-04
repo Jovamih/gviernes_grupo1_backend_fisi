@@ -1,5 +1,6 @@
 package com.example.appbuscatutor.adaptador;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -10,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.appbuscatutor.R;
-//import com.example.appbuscatutor.DetailActivity;
+//import com.example.appbuscatutor.DetailActivity
 import com.example.appbuscatutor.ver_datos_tutor;
 import com.example.appbuscatutor.Tutor;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     private List<Tutor> originalItems;
     private RecyclerItemClick itemClick;
 
-    public RecyclerAdapter(List<Tutor> items, RecyclerItemClick itemClick) {
+    private LayoutInflater mInflater;
+    private Context context;
+    final RecyclerAdapter.OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(Tutor item);
+    }
+
+    /*public RecyclerAdapter(List<Tutor> items, Context context, RecyclerItemClick itemClick) {
         this.items = items;
         this.itemClick = itemClick;
         this.originalItems = new ArrayList<>();
         originalItems.addAll(items);
+    }*/
+
+    public RecyclerAdapter(List<Tutor> lista_tutores, Context context, RecyclerAdapter.OnItemClickListener listener){
+        this.items=lista_tutores;
+        this.originalItems = new ArrayList<>();
+        originalItems.addAll(items);
+        this.context=context;
+        this.mInflater= LayoutInflater.from(context);
+        this.listener=listener;
     }
 
     @Override
@@ -41,27 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.RecyclerHolder holder, final int position) {
-        final Tutor item = items.get(position);
-        holder.imgItem.setImageResource(item.getImgResource());
-        holder.tvNombre.setText(item.getNombre());
-        holder.tvDescripcion.setText(item.getDescripcion());
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClick.itemClick(item);
-            }
-        });
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ver_datos_tutor.class);
-                intent.putExtra("itemDetail", item);
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
+        holder.bindData(items.get(position));
     }
 
     @Override
@@ -70,7 +68,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     public void filter(final String strSearch) {
-        if (strSearch.length() == 0) {
+        //Paso la cadena que se busca a minusculas
+        String SearchMayus = strSearch.toLowerCase();
+        if (SearchMayus.length() == 0) {
             items.clear();
             items.addAll(originalItems);
         }
@@ -78,7 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 items.clear();
                 List<Tutor> collect = originalItems.stream()
-                        .filter(i -> i.getNombre().toLowerCase().contains(strSearch))
+                        .filter(i -> i.getEspecialidades().toLowerCase().contains(SearchMayus))
                         .collect(Collectors.toList());
 
                 items.addAll(collect);
@@ -106,6 +106,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             imgItem = itemView.findViewById(R.id.imgTutor);
             tvNombre = itemView.findViewById(R.id.tvNombre);
             tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+        }
+
+        void bindData(final Tutor item){
+            Picasso.get()
+                    .load(item.getImgResource())
+                    .error(R.mipmap.ic_launcher_round)
+                    .into(imgItem);
+            tvNombre.setText(item.getNombre());
+            tvDescripcion.setText(item.getDescripcion());
+
+            itemView.setOnClickListener( new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+
         }
     }
 

@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBuscaTutor">
         <activity
+            android:name=".Perfil"
+            android:exported="false" />
+        <activity
+            android:name=".Historial"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
